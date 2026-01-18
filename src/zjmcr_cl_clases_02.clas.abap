@@ -1,0 +1,20 @@
+CLASS zjmcr_cl_clases_02 DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+
+    INTERFACES if_oo_adt_classrun .
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+CLASS zjmcr_cl_clases_02 IMPLEMENTATION.
+  METHOD if_oo_adt_classrun~main.
+
+
+
+
+  ENDMETHOD.
+ENDCLASS.
