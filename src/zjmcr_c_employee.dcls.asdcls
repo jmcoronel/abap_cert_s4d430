@@ -1,0 +1,11 @@
+@EndUserText.label: 'Access Control para Empleados Heredado'
+@MappingRole: true
+define role ZJMCR_C_EMPLOYEE {
+    grant
+        select
+            on
+                ZJMCR_C_EMPLOYEE
+                    where
+                        inheriting conditions from entity ZJMCR_R_EMPLOYEE;
+                        
+}
