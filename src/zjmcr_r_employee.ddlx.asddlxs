@@ -1,0 +1,8 @@
+@Metadata.layer: #CUSTOMER
+annotate entity ZJMCR_R_EMPLOYEE
+    with 
+{
+    @EndUserText.label: 'Nombre de Pila'
+    FirstName;
+    
+}

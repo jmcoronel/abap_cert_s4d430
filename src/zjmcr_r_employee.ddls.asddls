@@ -3,6 +3,7 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Data Definition Test 1'
 @Metadata.ignorePropagatedAnnotations: true
+@Metadata.allowExtensions: true
 define view entity ZJMCR_R_EMPLOYEE
   as select from zjmcr_employee
   association [1..1] to ZJMCR_R_DEPARTMENT as _Department on $projection.DepartmentId = _Department.Id
