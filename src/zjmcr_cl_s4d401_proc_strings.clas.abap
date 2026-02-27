@@ -10,7 +10,10 @@ CLASS zjmcr_cl_s4d401_proc_strings DEFINITION
   PRIVATE SECTION.
 ENDCLASS.
 
-CLASS zjmcr_cl_s4d401_proc_strings IMPLEMENTATION.
+
+
+CLASS ZJMCR_CL_S4D401_PROC_STRINGS IMPLEMENTATION.
+
 
   METHOD if_oo_adt_classrun~main.
 
@@ -36,5 +39,4 @@ CLASS zjmcr_cl_s4d401_proc_strings IMPLEMENTATION.
     out->write( |Result    = { result } | ).
 
   ENDMETHOD.
-
 ENDCLASS.

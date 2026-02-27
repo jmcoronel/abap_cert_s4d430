@@ -10,7 +10,11 @@ CLASS zjmcr_cl_fieldsymbol DEFINITION
   PRIVATE SECTION.
 ENDCLASS.
 
-CLASS zjmcr_cl_fieldsymbol IMPLEMENTATION.
+
+
+CLASS ZJMCR_CL_FIELDSYMBOL IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
 

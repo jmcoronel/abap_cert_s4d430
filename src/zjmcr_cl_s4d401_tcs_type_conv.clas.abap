@@ -10,7 +10,10 @@ CLASS zjmcr_cl_s4d401_tcs_type_conv DEFINITION
   PRIVATE SECTION.
 ENDCLASS.
 
-CLASS zjmcr_cl_s4d401_tcs_type_conv IMPLEMENTATION.
+
+
+CLASS ZJMCR_CL_S4D401_TCS_TYPE_CONV IMPLEMENTATION.
+
 
   METHOD if_oo_adt_classrun~main.
 
@@ -57,5 +60,4 @@ CLASS zjmcr_cl_s4d401_tcs_type_conv IMPLEMENTATION.
     ENDTRY.
 
   ENDMETHOD.
-
 ENDCLASS.

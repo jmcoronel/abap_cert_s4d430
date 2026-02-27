@@ -10,7 +10,11 @@ CLASS zjmcr_cl_s4d401_01_text_elemen DEFINITION
   PRIVATE SECTION.
 ENDCLASS.
 
-CLASS zjmcr_cl_s4d401_01_text_elemen IMPLEMENTATION.
+
+
+CLASS ZJMCR_CL_S4D401_01_TEXT_ELEMEN IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
     out->write( text-001 ).

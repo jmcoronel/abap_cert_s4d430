@@ -10,7 +10,11 @@ CLASS zjmcr_cl_clases_02 DEFINITION
   PRIVATE SECTION.
 ENDCLASS.
 
-CLASS zjmcr_cl_clases_02 IMPLEMENTATION.
+
+
+CLASS ZJMCR_CL_CLASES_02 IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
 

@@ -10,7 +10,10 @@ CLASS zjmcr_cl_s4d401_tcs_timestamp DEFINITION
   PRIVATE SECTION.
 ENDCLASS.
 
-CLASS zjmcr_cl_s4d401_tcs_timestamp IMPLEMENTATION.
+
+
+CLASS ZJMCR_CL_S4D401_TCS_TIMESTAMP IMPLEMENTATION.
+
 
   METHOD if_oo_adt_classrun~main.
 

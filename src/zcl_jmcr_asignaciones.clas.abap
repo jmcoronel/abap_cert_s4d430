@@ -10,7 +10,10 @@ CLASS zcl_jmcr_asignaciones DEFINITION
   PRIVATE SECTION.
 ENDCLASS.
 
-CLASS zcl_jmcr_asignaciones IMPLEMENTATION.
+
+
+CLASS ZCL_JMCR_ASIGNACIONES IMPLEMENTATION.
+
 
   METHOD if_oo_adt_classrun~main.
 
@@ -143,5 +146,4 @@ CLASS zcl_jmcr_asignaciones IMPLEMENTATION.
 *    out->write( var_n ).
 
   ENDMETHOD.
-
 ENDCLASS.

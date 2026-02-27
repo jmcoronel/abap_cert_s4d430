@@ -10,7 +10,11 @@ CLASS zjmcr_cl_joins_02 DEFINITION
   PRIVATE SECTION.
 ENDCLASS.
 
-CLASS zjmcr_cl_joins_02 IMPLEMENTATION.
+
+
+CLASS ZJMCR_CL_JOINS_02 IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
 

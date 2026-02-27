@@ -10,7 +10,10 @@ CLASS zjmcr_use_datadef_sql DEFINITION
   PRIVATE SECTION.
 ENDCLASS.
 
-CLASS zjmcr_use_datadef_sql IMPLEMENTATION.
+
+
+CLASS ZJMCR_USE_DATADEF_SQL IMPLEMENTATION.
+
 
   METHOD if_oo_adt_classrun~main.
 
@@ -51,5 +54,4 @@ CLASS zjmcr_use_datadef_sql IMPLEMENTATION.
 
 
   ENDMETHOD.
-
 ENDCLASS.

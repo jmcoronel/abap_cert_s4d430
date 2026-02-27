@@ -10,7 +10,11 @@ CLASS zjmcr_global_types DEFINITION
   PRIVATE SECTION.
 ENDCLASS.
 
-CLASS zjmcr_global_types IMPLEMENTATION.
+
+
+CLASS ZJMCR_GLOBAL_TYPES IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
 

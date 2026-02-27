@@ -10,7 +10,11 @@ CLASS zjmcr_cl_internaltables_3 DEFINITION
   PRIVATE SECTION.
 ENDCLASS.
 
-CLASS zjmcr_cl_internaltables_3 IMPLEMENTATION.
+
+
+CLASS ZJMCR_CL_INTERNALTABLES_3 IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
 

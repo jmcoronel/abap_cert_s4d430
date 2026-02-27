@@ -11,7 +11,8 @@ CLASS zjmcr_fill_tables DEFINITION
 ENDCLASS.
 
 
-CLASS zjmcr_fill_tables IMPLEMENTATION.
+
+CLASS ZJMCR_FILL_TABLES IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.
@@ -139,5 +140,4 @@ CLASS zjmcr_fill_tables IMPLEMENTATION.
     ENDTRY.
 
   ENDMETHOD.
-
 ENDCLASS.

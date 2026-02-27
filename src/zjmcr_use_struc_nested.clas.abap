@@ -10,7 +10,11 @@ CLASS zjmcr_use_struc_nested DEFINITION
   PRIVATE SECTION.
 ENDCLASS.
 
-CLASS zjmcr_use_struc_nested IMPLEMENTATION.
+
+
+CLASS ZJMCR_USE_STRUC_NESTED IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
     DATA: person TYPE zjmcr_person.

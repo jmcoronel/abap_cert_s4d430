@@ -10,7 +10,11 @@ CLASS zjmcr_cl_internaltables_4 DEFINITION
   PRIVATE SECTION.
 ENDCLASS.
 
-CLASS zjmcr_cl_internaltables_4 IMPLEMENTATION.
+
+
+CLASS ZJMCR_CL_INTERNALTABLES_4 IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
 
