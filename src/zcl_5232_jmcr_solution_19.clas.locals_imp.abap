@@ -71,14 +71,15 @@ CLASS lcl_passenger_flight DEFINITION .
              currency_code  TYPE /lrn/passflight-currency_code,
            END OF st_flights_buffer.
 
-*    CLASS-DATA: flights_buffer TYPE TABLE OF st_flights_buffer.
 *    CLASS-DATA: flights_buffer
 *          TYPE SORTED TABLE OF st_flights_buffer
 *          WITH NON-UNIQUE KEY carrier_id connection_id flight_date.
+
     CLASS-DATA: flights_buffer
-        TYPE HASHED TABLE OF st_flights_buffer
-        WITH UNIQUE KEY carrier_id connection_id flight_date
-        WITH NON-UNIQUE SORTED KEY sk_carrier COMPONENTS carrier_id.
+          TYPE HASHED TABLE OF st_flights_buffer
+          WITH UNIQUE KEY carrier_id connection_id flight_date
+          WITH NON-UNIQUE SORTED KEY sk_carrier COMPONENTS carrier_id.
+
 
     DATA connection_details TYPE st_connection_details.
     DATA seats_free TYPE i.
@@ -137,8 +138,11 @@ CLASS lcl_passenger_flight IMPLEMENTATION.
 
   METHOD get_flights_by_carrier.
 
-*    IF NOT line_exists(  flights_buffer[ carrier_id = i_carrier_id ] ).
-    IF NOT line_exists( flights_buffer[ KEY sk_carrier COMPONENTS carrier_id = i_carrier_id ] ).
+    IF NOT line_exists(  flights_buffer[
+                                 KEY sk_carrier
+                          COMPONENTS carrier_id = i_carrier_id
+                         ]
+                       ).
       SELECT
         FROM /lrn/passflight
       FIELDS carrier_id, connection_id, flight_date,
@@ -159,28 +163,17 @@ CLASS lcl_passenger_flight IMPLEMENTATION.
 
     ENDIF.
 
-*    r_result = VALUE #(
-*                  FOR <flight> IN flights_buffer
-*                  WHERE ( carrier_id = i_carrier_id )
-*                  ( NEW lcl_passenger_flight(
-*                         i_carrier_id    = <flight>-carrier_id
-*                         i_connection_id = <flight>-connection_id
-*                         i_flight_date   = <flight>-flight_date
-*                    )
-*                  )
-*               ).
-
     r_result = VALUE #(
-                FOR <flight> IN flights_buffer
-                USING KEY sk_carrier
-                WHERE ( carrier_id = i_carrier_id )
-                ( NEW lcl_passenger_flight(
-                        i_carrier_id = <flight>-carrier_id
-                        i_connection_id = <flight>-connection_id
-                        i_flight_date = <flight>-flight_date
-                        )
+                  FOR <flight> IN flights_buffer
+                  USING KEY sk_carrier
+                  WHERE ( carrier_id = i_carrier_id )
+                  ( NEW lcl_passenger_flight(
+                         i_carrier_id    = <flight>-carrier_id
+                         i_connection_id = <flight>-connection_id
+                         i_flight_date   = <flight>-flight_date
                     )
-                ).
+                  )
+               ).
 
   ENDMETHOD.
 
@@ -422,6 +415,7 @@ CLASS lcl_cargo_flight IMPLEMENTATION.
           INTO CORRESPONDING FIELDS OF @flight_raw.
     ENDTRY.
 
+*    carrier_id    =  EXACT #( i_carrier_id ).
     carrier_id    =  i_carrier_id .
     connection_id =  i_connection_id .
     flight_date   = i_flight_date.
@@ -477,7 +471,8 @@ CLASS lcl_carrier DEFINITION .
     METHODS constructor
       IMPORTING
                 i_carrier_id TYPE /dmo/carrier_id
-      RAISING   cx_abap_invalid_value.
+      RAISING   cx_abap_invalid_value
+                cx_abap_auth_check_exception.
 
     METHODS get_output RETURNING VALUE(r_result) TYPE tt_output.
 
@@ -522,19 +517,30 @@ CLASS lcl_carrier IMPLEMENTATION.
 
     me->carrier_id = i_carrier_id.
 
+*    SELECT SINGLE
+*      FROM /lrn/i_carrier
+*    FIELDS concat_with_space( airlineid, name, 1 ) , currencycode
+*     WHERE airlineid = @i_carrier_id
+*     INTO ( @me->name, @me->currency_code ).
+
     SELECT SINGLE
       FROM /lrn/carrier
-*    FIELDS carrier_name, currency_code
-*    FIELDS carrier_id && ' ' && name, currency_code
     FIELDS concat_with_space( carrier_id, name, 1 ) , currency_code
      WHERE carrier_id = @i_carrier_id
      INTO ( @me->name, @me->currency_code ).
-
+*
     IF sy-subrc <> 0.
       RAISE EXCEPTION TYPE cx_abap_invalid_value.
     ENDIF.
 
-*    name = carrier_id && ` ` && name.
+    AUTHORITY-CHECK
+           OBJECT '/LRN/CARR'
+               ID '/LRN/CARR' FIELD i_carrier_id
+               ID 'ACTVT'     FIELD '03'.
+
+    IF sy-subrc <> 0.
+      RAISE EXCEPTION TYPE cx_abap_auth_check_exception.
+    ENDIF.
 
     passenger_flights =
         lcl_passenger_flight=>get_flights_by_carrier(
